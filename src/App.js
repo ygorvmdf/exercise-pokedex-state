@@ -8,6 +8,8 @@ class App extends React.Component {
     super();
 
     this.nextPokemon = this.nextPokemon.bind(this);
+    this.filterFires = this.filterFires.bind(this);
+    this.psychicFires = this.psychicFires.bind(this);
 
     this.state = {
       index: 0,
@@ -26,12 +28,28 @@ class App extends React.Component {
       }))
     }
   }
+
+  filterFires() {
+    const firePkemons = pokemons.filter(pokemon => pokemon.type === 'Fire')
+    this.setState({
+      currentPokemon: firePkemons
+    })
+  }
+
+  psychicFires() {
+    const psychicPkemons = pokemons.filter(pokemon => pokemon.type === 'Psychic')
+    this.setState({
+      currentPokemon: psychicPkemons
+    })
+  }
   render() {
     return (
       <div className="App">
         <h1> Pokedex </h1>
         <Pokedex pokemons={this.state.currentPokemon[this.state.index]} />
         <button onClick={this.nextPokemon}>Proximo Pokemon</button>
+        <button onClick={this.filterFires}>Fire element</button>
+        <button onClick={this.psychicFires}>Psychic element</button>
       </div>
     );
   }
